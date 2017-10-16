@@ -28,12 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
-            "",
-            "Thuan",
-            "Meo",
-            "11/01/1997",
-            "1"}, -1);
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -55,8 +49,8 @@
             this.colDateOfBirth = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colGender = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.listSinhVien = new System.Windows.Forms.ListView();
-            this.listBox1 = new System.Windows.Forms.ListBox();
-            this.cbClass = new System.Windows.Forms.ComboBox();
+            this.btnClear = new System.Windows.Forms.Button();
+            this.txtSearch = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -98,14 +92,14 @@
             this.txtName.Location = new System.Drawing.Point(67, 32);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(100, 20);
-            this.txtName.TabIndex = 1;
+            this.txtName.TabIndex = 2;
             // 
             // txtClass
             // 
             this.txtClass.Location = new System.Drawing.Point(67, 62);
             this.txtClass.Name = "txtClass";
             this.txtClass.Size = new System.Drawing.Size(100, 20);
-            this.txtClass.TabIndex = 1;
+            this.txtClass.TabIndex = 3;
             // 
             // label4
             // 
@@ -130,7 +124,7 @@
             this.button1.Location = new System.Drawing.Point(67, 304);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(64, 23);
-            this.button1.TabIndex = 3;
+            this.button1.TabIndex = 10;
             this.button1.Text = "Show";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
@@ -140,7 +134,7 @@
             this.button2.Location = new System.Drawing.Point(160, 304);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(57, 23);
-            this.button2.TabIndex = 3;
+            this.button2.TabIndex = 10;
             this.button2.Text = "Add";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
@@ -150,7 +144,7 @@
             this.button3.Location = new System.Drawing.Point(239, 304);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(51, 23);
-            this.button3.TabIndex = 3;
+            this.button3.TabIndex = 10;
             this.button3.Text = "Edit";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
@@ -160,17 +154,17 @@
             this.button4.Location = new System.Drawing.Point(311, 304);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(54, 23);
-            this.button4.TabIndex = 3;
+            this.button4.TabIndex = 10;
             this.button4.Text = "Delete";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(384, 304);
+            this.button5.Location = new System.Drawing.Point(491, 35);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(64, 23);
-            this.button5.TabIndex = 3;
+            this.button5.TabIndex = 10;
             this.button5.Text = "Search";
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.button5_Click);
@@ -184,7 +178,7 @@
             this.cbGender.Location = new System.Drawing.Point(320, 35);
             this.cbGender.Name = "cbGender";
             this.cbGender.Size = new System.Drawing.Size(128, 21);
-            this.cbGender.TabIndex = 4;
+            this.cbGender.TabIndex = 5;
             // 
             // birthDatePicker
             // 
@@ -192,7 +186,7 @@
             this.birthDatePicker.Location = new System.Drawing.Point(320, 3);
             this.birthDatePicker.Name = "birthDatePicker";
             this.birthDatePicker.Size = new System.Drawing.Size(128, 20);
-            this.birthDatePicker.TabIndex = 5;
+            this.birthDatePicker.TabIndex = 4;
             // 
             // colMSSV
             // 
@@ -226,39 +220,38 @@
             this.colClass,
             this.colDateOfBirth,
             this.colGender});
-            this.listSinhVien.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1});
             this.listSinhVien.Location = new System.Drawing.Point(67, 106);
             this.listSinhVien.Name = "listSinhVien";
-            this.listSinhVien.Size = new System.Drawing.Size(381, 171);
+            this.listSinhVien.Size = new System.Drawing.Size(429, 171);
             this.listSinhVien.TabIndex = 2;
             this.listSinhVien.UseCompatibleStateImageBehavior = false;
             this.listSinhVien.View = System.Windows.Forms.View.Details;
+            this.listSinhVien.SelectedIndexChanged += new System.EventHandler(this.listSinhVien_SelectedIndexChanged);
             // 
-            // listBox1
+            // btnClear
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(466, 106);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(120, 173);
-            this.listBox1.TabIndex = 6;
-            this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
+            this.btnClear.Location = new System.Drawing.Point(400, 304);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(75, 23);
+            this.btnClear.TabIndex = 11;
+            this.btnClear.Text = "Clear";
+            this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
-            // cbClass
+            // txtSearch
             // 
-            this.cbClass.FormattingEnabled = true;
-            this.cbClass.Location = new System.Drawing.Point(180, 61);
-            this.cbClass.Name = "cbClass";
-            this.cbClass.Size = new System.Drawing.Size(71, 21);
-            this.cbClass.TabIndex = 7;
+            this.txtSearch.Location = new System.Drawing.Point(491, 3);
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Size = new System.Drawing.Size(100, 20);
+            this.txtSearch.TabIndex = 12;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(617, 355);
-            this.Controls.Add(this.cbClass);
-            this.Controls.Add(this.listBox1);
+            this.ClientSize = new System.Drawing.Size(617, 393);
+            this.Controls.Add(this.txtSearch);
+            this.Controls.Add(this.btnClear);
             this.Controls.Add(this.birthDatePicker);
             this.Controls.Add(this.cbGender);
             this.Controls.Add(this.button5);
@@ -305,8 +298,8 @@
         private System.Windows.Forms.ColumnHeader colDateOfBirth;
         private System.Windows.Forms.ColumnHeader colGender;
         private System.Windows.Forms.ListView listSinhVien;
-        private System.Windows.Forms.ListBox listBox1;
-        private System.Windows.Forms.ComboBox cbClass;
+        private System.Windows.Forms.Button btnClear;
+        private System.Windows.Forms.TextBox txtSearch;
     }
 }
 
