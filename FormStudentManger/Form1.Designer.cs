@@ -221,6 +221,7 @@
             this.colDateOfBirth,
             this.colGender});
             this.listSinhVien.Location = new System.Drawing.Point(67, 106);
+            this.listSinhVien.MultiSelect = false;
             this.listSinhVien.Name = "listSinhVien";
             this.listSinhVien.Size = new System.Drawing.Size(429, 171);
             this.listSinhVien.TabIndex = 2;
