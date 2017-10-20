@@ -43,14 +43,12 @@
             this.button5 = new System.Windows.Forms.Button();
             this.cbGender = new System.Windows.Forms.ComboBox();
             this.birthDatePicker = new System.Windows.Forms.DateTimePicker();
-            this.colMSSV = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.colName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.colClass = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.colDateOfBirth = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.colGender = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.listSinhVien = new System.Windows.Forms.ListView();
             this.btnClear = new System.Windows.Forms.Button();
             this.txtSearch = new System.Windows.Forms.TextBox();
+            this.cbKhoa = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.dataGridSinhVien = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridSinhVien)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -188,47 +186,6 @@
             this.birthDatePicker.Size = new System.Drawing.Size(128, 20);
             this.birthDatePicker.TabIndex = 4;
             // 
-            // colMSSV
-            // 
-            this.colMSSV.Text = "MSSV";
-            // 
-            // colName
-            // 
-            this.colName.Text = "Name";
-            this.colName.Width = 77;
-            // 
-            // colClass
-            // 
-            this.colClass.Text = "Class";
-            this.colClass.Width = 37;
-            // 
-            // colDateOfBirth
-            // 
-            this.colDateOfBirth.Text = "Date of birth";
-            this.colDateOfBirth.Width = 124;
-            // 
-            // colGender
-            // 
-            this.colGender.Text = "Gender";
-            this.colGender.Width = 50;
-            // 
-            // listSinhVien
-            // 
-            this.listSinhVien.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.colMSSV,
-            this.colName,
-            this.colClass,
-            this.colDateOfBirth,
-            this.colGender});
-            this.listSinhVien.Location = new System.Drawing.Point(67, 106);
-            this.listSinhVien.MultiSelect = false;
-            this.listSinhVien.Name = "listSinhVien";
-            this.listSinhVien.Size = new System.Drawing.Size(429, 171);
-            this.listSinhVien.TabIndex = 2;
-            this.listSinhVien.UseCompatibleStateImageBehavior = false;
-            this.listSinhVien.View = System.Windows.Forms.View.Details;
-            this.listSinhVien.SelectedIndexChanged += new System.EventHandler(this.listSinhVien_SelectedIndexChanged);
-            // 
             // btnClear
             // 
             this.btnClear.Location = new System.Drawing.Point(400, 304);
@@ -246,11 +203,41 @@
             this.txtSearch.Size = new System.Drawing.Size(100, 20);
             this.txtSearch.TabIndex = 12;
             // 
+            // cbKhoa
+            // 
+            this.cbKhoa.FormattingEnabled = true;
+            this.cbKhoa.Location = new System.Drawing.Point(320, 65);
+            this.cbKhoa.Name = "cbKhoa";
+            this.cbKhoa.Size = new System.Drawing.Size(128, 21);
+            this.cbKhoa.TabIndex = 14;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(236, 65);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(32, 13);
+            this.label6.TabIndex = 13;
+            this.label6.Text = "Khoa";
+            // 
+            // dataGridSinhVien
+            // 
+            this.dataGridSinhVien.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridSinhVien.Location = new System.Drawing.Point(67, 116);
+            this.dataGridSinhVien.Name = "dataGridSinhVien";
+            this.dataGridSinhVien.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridSinhVien.Size = new System.Drawing.Size(573, 171);
+            this.dataGridSinhVien.TabIndex = 15;
+            this.dataGridSinhVien.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridSinhVien_RowHeaderMouseClick);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(617, 393);
+            this.ClientSize = new System.Drawing.Size(678, 393);
+            this.Controls.Add(this.dataGridSinhVien);
+            this.Controls.Add(this.cbKhoa);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.txtSearch);
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.birthDatePicker);
@@ -260,7 +247,6 @@
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.listSinhVien);
             this.Controls.Add(this.txtClass);
             this.Controls.Add(this.txtName);
             this.Controls.Add(this.txtMSSV);
@@ -271,6 +257,7 @@
             this.Controls.Add(this.label1);
             this.Name = "Form1";
             this.Text = "Form1";
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridSinhVien)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -293,14 +280,11 @@
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.ComboBox cbGender;
         private System.Windows.Forms.DateTimePicker birthDatePicker;
-        private System.Windows.Forms.ColumnHeader colMSSV;
-        private System.Windows.Forms.ColumnHeader colName;
-        private System.Windows.Forms.ColumnHeader colClass;
-        private System.Windows.Forms.ColumnHeader colDateOfBirth;
-        private System.Windows.Forms.ColumnHeader colGender;
-        private System.Windows.Forms.ListView listSinhVien;
         private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.TextBox txtSearch;
+        private System.Windows.Forms.ComboBox cbKhoa;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.DataGridView dataGridSinhVien;
     }
 }
 

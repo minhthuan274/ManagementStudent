@@ -11,7 +11,8 @@ namespace FormStudentManger
         public string MSSV { get; set; }
         public string Name { get; set; }
         public string Class { get; set; }
-        public DateTime BrithDate { get; set; }
-        public Boolean Gender { get; set; }
+        public DateTime BirthDay { get; set; }
+        public string Gender { get; set; }
+        public Khoa Khoa { get; set; }
     }
 }
