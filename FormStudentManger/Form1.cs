@@ -70,19 +70,11 @@ namespace FormStudentManger
             var MSSV = txtMSSV.Text;
             var name = txtName.Text;
             var lop = txtClass.Text;
-            var birthDay = birthDatePicker.Value.Date.ToString("yyyyMMdd");
-            var gender = cbGender.SelectedItem;
-            string text = "INSERT INTO student VALUES(" +
-                $"N'{MSSV}'," +
-                $"N'{name}'," +
-                $"N'{lop}'," +
-                $"N'{birthDay}'," +
-                $"N'{gender}')";
-            SqlCommand cmd = new SqlCommand(text, cnn);
-            cmd.ExecuteNonQuery();
-            MessageBox.Show("Add successful");
-            cnn.Close();
-            this.getAllStudents();
+            var birthDay = birthDatePicker.Value.Date;
+            var khoa = cbKhoa.SelectedItem.ToString();
+            var gender = cbGender.SelectedItem.ToString();
+
+            studentService.AddStudent(MSSV, name, lop, birthDay, gender, khoa);
 
         }
 
@@ -90,16 +82,14 @@ namespace FormStudentManger
         // Delete Student
         private void button4_Click(object sender, EventArgs e)
         {
-            //ListViewItem item = listSinhVien.SelectedItems[0];
-            //var mssv = item.Text;
-            //var cnn = this.initConnection();
-            //string text = $"DELETE FROM Student WHERE MSSV='{mssv}'";
-            //SqlCommand cmd = new SqlCommand(text, cnn);
-            //cmd.ExecuteNonQuery();
-            //MessageBox.Show("Deleted successful");
-            
-            //cnn.Close();
-            //this.getAllStudents();
+            if (dataGridSinhVien.SelectedCells.Count > 0)
+            {
+                var cnn = this.initConnection();
+                int selectedRowIndex = dataGridSinhVien.SelectedCells[0].RowIndex;
+                DataGridViewRow selectedRow = dataGridSinhVien.Rows[selectedRowIndex];
+                string mssv = Convert.ToString(selectedRow.Cells["MSSV"].Value);
+                studentService.DeleteStudent(mssv);
+            }
         }
 
         // 

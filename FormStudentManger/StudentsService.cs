@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace FormStudentManger
 {
@@ -19,6 +20,7 @@ namespace FormStudentManger
             cnn.Open();
             return cnn;
         }
+
         public void UpdateStudent(string mssv, string name, string lop, DateTime birthDay, string gender, string khoa)
         {
             var cnn = this.initConnection();
@@ -28,26 +30,40 @@ namespace FormStudentManger
                           $"WHERE MSSV='{mssv}'";
             SqlCommand cmd = new SqlCommand(text, cnn);
             cmd.ExecuteNonQuery();
+            MessageBox.Show("Update successful");
 
             cnn.Close();
         }
 
-        //public Student[] getStudents()
-        //{
-        //    var cnn = this.initConnection();
+        public void AddStudent(string mssv, string name, string lop, DateTime birthDay, string gender, string khoa)
+        {
+            var cnn = this.initConnection();
+            var sBirthDay = birthDay.Date.ToString("yyyyMMdd");
+            var id_khoa = khoaService.getIdKhoa(khoa).id_khoa;
 
-        //    var text2 = "select MSSV, Student.Name as NameSv, Khoa.name as NameKhoa " +
-        //               "from Student " +
-        //               "inner join Khoa on Student.id_khoa = Khoa.id_khoa";
-        //    SqlCommand cmd = new SqlCommand(text2, cnn);
-        //    SqlDataAdapter adapter = new SqlDataAdapter();
-        //    adapter.SelectCommand = cmd;
+            string text = "INSERT INTO student VALUES(" +
+                $"N'{mssv}'," +
+                $"N'{name}'," +
+                $"N'{lop}'," +
+                $"N'{birthDay}'," +
+                $"N'{gender}', " +
+                $"N'{id_khoa}')";
+            SqlCommand cmd = new SqlCommand(text, cnn);
+            cmd.ExecuteNonQuery();
+            MessageBox.Show("Add successful");
+            cnn.Close();
+        }
 
-        //    DataSet dataset = new DataSet();
-        //    adapter.Fill(dataset);
+        public void DeleteStudent(string mssv)
+        {
+            var cnn = this.initConnection();
+            string text = $"DELETE FROM Student WHERE MSSV='{mssv}'";
+            SqlCommand cmd = new SqlCommand(text, cnn);
+            cmd.ExecuteNonQuery();
+            MessageBox.Show("Deleted successful");
 
-        //    dataGridSinhVien.DataSource = dataset.Tables[0];
-        //    cnn.Close();
-        //}
+            cnn.Close();
+        }
+
     }
 }
