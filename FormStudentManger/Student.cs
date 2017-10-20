@@ -13,6 +13,16 @@ namespace FormStudentManger
         public string Class { get; set; }
         public DateTime BirthDay { get; set; }
         public string Gender { get; set; }
-        public Khoa Khoa { get; set; }
+        public string id_khoa { get; set; }
+
+        public Student(string mssv, string name, string lop, DateTime birthDay, string gender, string id_khoa)
+        {
+            MSSV = mssv;
+            Name = name;
+            Class = lop;
+            BirthDay = birthDay;
+            Gender = gender;
+            this.id_khoa = id_khoa;
+        }
     }
 }

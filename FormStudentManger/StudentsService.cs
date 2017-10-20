@@ -10,34 +10,26 @@ namespace FormStudentManger
 {
     class StudentsService
     {
+        public List<Student> Students { get; set; }
+
         private KhoaService khoaService = new KhoaService();
         private static string ConnectionString = @"Data Source=DESKTOP-BINHTHU;Initial Catalog=Wolf_development;Integrated Security=True";
-
-        private SqlConnection initConnection()
-        {
-            SqlConnection cnn = new SqlConnection();
-            cnn.ConnectionString = StudentsService.ConnectionString;
-            cnn.Open();
-            return cnn;
-        }
+        private DataHelper dataHelper = new DataHelper();
 
         public void UpdateStudent(string mssv, string name, string lop, DateTime birthDay, string gender, string khoa)
         {
-            var cnn = this.initConnection();
             var sBirthDay = birthDay.Date.ToString("yyyyMMdd");
             var id_khoa = khoaService.getIdKhoa(khoa).id_khoa;
             string text = $"UPDATE Student SET Name='{name}', Class='{lop}', BirthDay='{sBirthDay}', Gender='{gender}', id_khoa='{id_khoa}'" +
                           $"WHERE MSSV='{mssv}'";
-            SqlCommand cmd = new SqlCommand(text, cnn);
-            cmd.ExecuteNonQuery();
-            MessageBox.Show("Update successful");
 
-            cnn.Close();
+            dataHelper.DB_ExecuteNonQuery(text);
+
+            MessageBox.Show("Update successful");
         }
 
         public void AddStudent(string mssv, string name, string lop, DateTime birthDay, string gender, string khoa)
         {
-            var cnn = this.initConnection();
             var sBirthDay = birthDay.Date.ToString("yyyyMMdd");
             var id_khoa = khoaService.getIdKhoa(khoa).id_khoa;
 
@@ -48,21 +40,16 @@ namespace FormStudentManger
                 $"N'{birthDay}'," +
                 $"N'{gender}', " +
                 $"N'{id_khoa}')";
-            SqlCommand cmd = new SqlCommand(text, cnn);
-            cmd.ExecuteNonQuery();
+
+            dataHelper.DB_ExecuteNonQuery(text);
             MessageBox.Show("Add successful");
-            cnn.Close();
         }
 
         public void DeleteStudent(string mssv)
         {
-            var cnn = this.initConnection();
             string text = $"DELETE FROM Student WHERE MSSV='{mssv}'";
-            SqlCommand cmd = new SqlCommand(text, cnn);
-            cmd.ExecuteNonQuery();
+            dataHelper.DB_ExecuteNonQuery(text);
             MessageBox.Show("Deleted successful");
-
-            cnn.Close();
         }
 
     }

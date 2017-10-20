@@ -16,15 +16,16 @@ namespace FormStudentManger
     {
         private KhoaService khoaService = new KhoaService();
         private StudentsService studentService = new StudentsService();
+
+        private SV_DAL svDal = new SV_DAL();
+
+        public DataHelper DataHelper { get; set; }
+
         public Form1()
         {
             InitializeComponent();
             this.getKhoa();
-            ColumnHeader h1 = new ColumnHeader();
-            ColumnHeader h2 = new ColumnHeader();
-            h1.Text = "Name SV";
-            h2.Text = "Name Khoa";
-           
+            this.DataHelper = new DataHelper();
         }
 
         string connectionString = @"Data Source=DESKTOP-BINHTHU;Initial Catalog=Wolf_development;Integrated Security=True";
@@ -39,20 +40,11 @@ namespace FormStudentManger
 
         private void getKhoa()
         {
-            var cnn = this.initConnection();
-            string text = "select * from Khoa";
-            var cmd = new SqlCommand(text, cnn);
-            SqlDataReader r = cmd.ExecuteReader();
-
-            while (r.Read())
+            var khoas = this.svDal.getKhoas();
+            foreach (var khoa in khoas)
             {
-                cbKhoa.Items.Add(r["Name"].ToString());
+                cbKhoa.Items.Add(khoa.Name);
             }
-
-            r.Close();
-            cnn.Close();
-
-
         }
 
         // Get all students
@@ -75,7 +67,7 @@ namespace FormStudentManger
             var gender = cbGender.SelectedItem.ToString();
 
             studentService.AddStudent(MSSV, name, lop, birthDay, gender, khoa);
-
+            this.ShowDataGridView();
         }
 
 
@@ -190,20 +182,7 @@ namespace FormStudentManger
 
         private void ShowDataGridView()
         {
-            var cnn = this.initConnection();
-            var text2 = "select MSSV, Student.Name as NameSv, Khoa.name as NameKhoa " +
-                       "from Student " +
-                       "inner join Khoa on Student.id_khoa = Khoa.id_khoa";
-            SqlCommand cmd = new SqlCommand(text2, cnn);
-            SqlDataAdapter adapter = new SqlDataAdapter();
-            adapter.SelectCommand = cmd;
-
-            DataSet dataset = new DataSet();
-            adapter.Fill(dataset, "SV");
-
-            dataGridSinhVien.DataSource = dataset.Tables["SV"];
-            cnn.Close();
-
+            dataGridSinhVien.DataSource = this.svDal.GetRender() ;
         }
 
         private void dataGridSinhVien_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
